@@ -1,0 +1,23 @@
+{
+  "name": "@brettburwell/svg-build",
+  "description": "Standard SVG build process to handle icon, full, and inline SVGs.",
+  "main": "index.js",
+  "version": "0.0.1",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brettburwell/svg-build"
+  },
+  "author": {
+    "name": "Static Interactive",
+    "email": "bburwell@thisisstatic.com",
+    "url": "https://thisisstatic.com"
+  },
+  "dependencies": {
+    "svg-sprite": "2.0.4",
+    "svgo": "4.0.0",
+  },
+  "devDependencies": {}
+}
