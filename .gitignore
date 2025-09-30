@@ -1,6 +1,2 @@
 .DS_Store
-.build
-.idea
-dist
-web_modules
 node_modules
