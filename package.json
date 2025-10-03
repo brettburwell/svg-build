@@ -1,10 +1,21 @@
 {
-  "name": "@brettburwell/svg-build",
+  "name": "@static-interactive/svg-build",
   "description": "Standard SVG build process to handle icon, full, and inline SVGs.",
+  "type": "module",
   "main": "index.js",
+  "bin": {
+    "svg-build": "index.js"
+  },
   "version": "0.0.1",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "svg-sprite": "2.0.4",
+    "svgo": "4.0.0"
+  },
+  "devDependencies": {
+    "prettier": "3.6.2"
   },
   "repository": {
     "type": "git",
@@ -15,9 +26,7 @@
     "email": "bburwell@thisisstatic.com",
     "url": "https://thisisstatic.com"
   },
-  "dependencies": {
-    "svg-sprite": "2.0.4",
-    "svgo": "4.0.0",
-  },
-  "devDependencies": {}
+  "prettier": {
+    "singleQuote": true
+  }
 }

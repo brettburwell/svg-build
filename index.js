@@ -1,8 +1,9 @@
+#!/usr/bin/env node
+
 import fs from 'fs';
 import path from 'path';
 import SVGSpriter from 'svg-sprite';
 import { optimize } from 'svgo';
-
 
 // ---------------------------------------------------------------
 // Helpers
@@ -10,12 +11,11 @@ import { optimize } from 'svgo';
 
 const readSVGs = (dir) => {
   return fs.readdirSync(dir).filter((f) => f.toLowerCase().endsWith('.svg'));
-}
+};
 
 const renameSvg = (name) => {
   return name.replace('.svg', '');
 };
-
 
 // ---------------------------------------------------------------
 // Config
@@ -41,13 +41,13 @@ const spriteConfig = (spriteFile, extraPlugins = []) => ({
   dest: './templates/_svg', // overridden later if needed
   mode: {
     symbol: {
-      sprite: spriteFile
+      sprite: spriteFile,
     },
     inline: true,
   },
   shape: {
     id: {
-      generator: renameSvg
+      generator: renameSvg,
     },
     transform: [
       {
@@ -82,32 +82,30 @@ const configs = [
   {
     type: 'copyInline',
     srcDir: './src/svg/inline/',
-    outDir: './static/svg/inline/',
+    outDir: './src/static/svg/inline/',
   },
   {
     type: 'copyFull',
     srcDir: './src/svg/full/',
-    outDir: './static/svg/full/',
+    outDir: './src/static/svg/full/',
   },
   {
     type: 'copyIcon',
     srcDir: './src/svg/icon/',
-    outDir: './static/svg/icon/',
+    outDir: './src/static/svg/icon/',
   },
 ];
-
 
 // ---------------------------------------------------------------
 // Main Process
 // ---------------------------------------------------------------
 
 for (const config of configs) {
-
   //
   // If Inline SVG
   //
 
-  if (['inline', 'copyInline', 'copyFull', 'copyIcon'].indexOf(config.type)) {
+  if (['inline', 'copyInline', 'copyFull', 'copyIcon'].includes(config.type)) {
     // Make directory if it doesn't exist and grab SVG files
     fs.mkdirSync(config.outDir, { recursive: true });
     const files = readSVGs(config.srcDir);
@@ -123,13 +121,12 @@ for (const config of configs) {
       fs.writeFileSync(dest, data);
     }
 
-  //
-  // Else (Icon or Full)
-  //
-
+    //
+    // Else (Icon or Full)
+    //
   } else {
     // Initialize spriter and grab SVG files
-    const spriter = new SVGSpriter({...config.sprite, dest: config.outDir});
+    const spriter = new SVGSpriter({ ...config.sprite, dest: config.outDir });
     const files = readSVGs(config.srcDir);
 
     // Loop through each svg file and add to spriter
