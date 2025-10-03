@@ -1,5 +1,5 @@
 {
-  "name": "@static/svg-build",
+  "name": "@static-interactive/svg-build",
   "description": "Standard SVG build process to handle icon, full, and inline SVGs.",
   "type": "module",
   "main": "index.js",

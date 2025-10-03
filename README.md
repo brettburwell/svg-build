@@ -5,18 +5,18 @@
 ## Install
 
 ```shell
-npm install @static/svg-build
+npm install @static-interactive/svg-build
 ```
 
 ## Setup
 
 This package expects the following directory structure:
 
-- `src/static/svg/icon`
+- `src/svg/icon`
   - Single-color icons that will have their color set to `currentColor` and are added to sprite sheet
-- `src/static/svg/full`
+- `src/svg/full`
     - Multi-color icons that will not have their colors updated and are added to sprite sheet
-- `src/static/svg/inline`
+- `src/svg/inline`
     - Single or multi-color SVG that are intended to be included inline in your HTML
 
 
