@@ -26,12 +26,14 @@ const baseSVGO = [
   {
     name: 'preset-default',
     params: {
-      cleanupIds: false,
-      collapseGroups: false,
-      mergePaths: false,
-      moveElemsAttrsToGroup: false,
-      moveGroupAttrsToElems: false,
-      removeUselessStrokeAndFill: false,
+      overrides: {
+        cleanupIds: false,
+        collapseGroups: false,
+        mergePaths: false,
+        moveElemsAttrsToGroup: false,
+        moveGroupAttrsToElems: false,
+        removeUselessStrokeAndFill: false,
+      }
     },
   },
 ];
