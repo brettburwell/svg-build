@@ -6,6 +6,22 @@ import SVGSpriter from 'svg-sprite';
 import { optimize } from 'svgo';
 
 // ---------------------------------------------------------------
+// Project Config
+// ---------------------------------------------------------------
+
+const configPath = path.join(process.cwd(), 'svg-build.config.json');
+const userConfig = fs.existsSync(configPath)
+  ? JSON.parse(fs.readFileSync(configPath, 'utf8'))
+  : {};
+
+const cfg = {
+  srcBase: userConfig.srcBase ?? './src/svg',
+  spriteOut: userConfig.spriteOut ?? './templates/_svg',
+  inlineOut: userConfig.inlineOut ?? './templates/_svg/inline',
+  staticBase: userConfig.staticBase ?? './src/static/svg',
+};
+
+// ---------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------
 
@@ -63,8 +79,8 @@ const spriteConfig = (spriteFile, extraPlugins = []) => ({
 const configs = [
   {
     type: 'icon',
-    srcDir: './src/svg/icon/',
-    outDir: './templates/_svg/',
+    srcDir: `${cfg.srcBase}/icon/`,
+    outDir: `${cfg.spriteOut}/`,
     sprite: spriteConfig('icon.symbol.svg', [
       { name: 'convertColors', params: { currentColor: true } },
       { name: 'removeAttrs', params: { attrs: '(opacity|style)' } },
@@ -72,29 +88,29 @@ const configs = [
   },
   {
     type: 'inline',
-    srcDir: './src/svg/inline/',
-    outDir: './templates/_svg/inline/',
+    srcDir: `${cfg.srcBase}/inline/`,
+    outDir: `${cfg.inlineOut}/`,
   },
   {
     type: 'full',
-    srcDir: './src/svg/full/',
-    outDir: './templates/_svg/',
+    srcDir: `${cfg.srcBase}/full/`,
+    outDir: `${cfg.spriteOut}/`,
     sprite: spriteConfig('full.symbol.svg'),
   },
   {
     type: 'copyInline',
-    srcDir: './src/svg/inline/',
-    outDir: './src/static/svg/inline/',
+    srcDir: `${cfg.srcBase}/inline/`,
+    outDir: `${cfg.staticBase}/inline/`,
   },
   {
     type: 'copyFull',
-    srcDir: './src/svg/full/',
-    outDir: './src/static/svg/full/',
+    srcDir: `${cfg.srcBase}/full/`,
+    outDir: `${cfg.staticBase}/full/`,
   },
   {
     type: 'copyIcon',
-    srcDir: './src/svg/icon/',
-    outDir: './src/static/svg/icon/',
+    srcDir: `${cfg.srcBase}/icon/`,
+    outDir: `${cfg.staticBase}/icon/`,
   },
 ];
 
